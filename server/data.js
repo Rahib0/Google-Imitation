@@ -28,7 +28,7 @@ let resultsList = [
     { url: "https://twitter.com/Wikipedia", title: "Wikipedia (@Wikipedia) · Twitter", body: "Let's set knowledge free.\nGot a question?" },
     { url: "https://www.facebook.com/wikipedia/", title: "Wikipedia - Home | Facebook", body: "Here are 4 things lawmakers need to know to protect people-powered spaces like Wikipedia. The Wikimedia Foundation, the nonprofit that operates Wikipedia, ..." },
     { url: "https://apps.apple.com/us/app/wikipedia/id324715238", title: "Wikipedia on the App Store", body: "Download Wikipedia and enjoy it on your iPhone, iPad, and iPod touch. ... or dive down a Wikipedia rabbit hole with the official Wikipedia app for iOS." },
-    { url: "https://play.google.com/store/apps/details?id=org.wikipedia&hl=en_GB&gl=US", title: "Wikipedia – Apps on Google Play", body: "The best Wikipedia experience on your Mobile device. Ad-free and free of charge, forever. With the official Wikipedia app, you can search and explore 40+ ..." },
+    { url: "https://play.google.com/store/apps/details?id=org.wikipedia&hl=en_GB&gl=US", title: "Wikipedia – Apps on Google Play", body: "The best Wikipedia experience on your Mobile device. Ad-free and free of charge, forever. With the official Wikipedia app, you can search and explore 40+ ..." }
 ]
 
 module.exports = resultsList
