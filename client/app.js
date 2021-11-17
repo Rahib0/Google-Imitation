@@ -24,12 +24,20 @@ function getResults(e) {
         let footer = document.createElement('footer')
         let h4 = document.createElement('h4')
         let p = document.createElement('p')
+        footer.className=`${i}`
+        h4.className=`${i}`
+        p.className=`${i}`
+        footer.textContent =resultsList[i]['url']
+        h4.textContent =resultsList[i]['title']
+        p.textContent =resultsList[i]['body']
+
+
         document.body.append(footer) 
         document.body.append(h4) 
         document.body.append(p)
-        document.querySelector(`footer`).innerHTML += resultsList[i]['title']
-        document.querySelector(`h4`).innerHTML += resultsList[i]['title']
-        document.querySelector(`p`).innerHTML += resultsList[i]['body']
+        // document.querySelector(`footer.${i}`).innerHTML += resultsList[i]['title']
+        // document.querySelector(`h4.${i}`).innerHTML += resultsList[i]['title']
+        // document.querySelector(`p.${i}`).innerHTML += resultsList[i]['body']
     }
     document.body.style.display = 'block'
 }
