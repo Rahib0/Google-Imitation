@@ -7,19 +7,18 @@ let resultsList = [
 
 
 form.addEventListener('submit', getResults)
-form.addEventListener('#lucky', getOneResult)
+document.querySelector('#lucky').addEventListener('click', getOneResult)
 
-// function getResults(e) {
-//     e.preventDefault()
-//     fetch(`http://localhost:3000/resultsList`)
-//       .then(resp => resp.text())
-//       .then(result => document.getElementById('results').textContent = result)
-//       .then(document.querySelector('.homepage').style.display = 'none')
-// }
-
-function getResults(e) {
+async function getResults(e) {
     e.preventDefault()
-    document.querySelector('.homepage').style.display = 'none'
+    let search = document.querySelector('#search-bar').value
+    console.log(search)
+    let res = await fetch(`http://localhost:3000/${search}`)
+    let resultsList = await res.json()
+    resultsList.sort(function(a, b) {
+        return b.rank - a.rank;
+    })
+    console.log(resultsList)
     for(let i =0; i<=resultsList.length -1; i++){
         let footer = document.createElement('footer')
         let h4 = document.createElement('h4')
@@ -30,22 +29,71 @@ function getResults(e) {
         footer.textContent =resultsList[i]['url']
         h4.textContent =resultsList[i]['title']
         p.textContent =resultsList[i]['body']
-
-
         document.body.append(footer) 
         document.body.append(h4) 
         document.body.append(p)
-        // document.querySelector(`footer.${i}`).innerHTML += resultsList[i]['title']
-        // document.querySelector(`h4.${i}`).innerHTML += resultsList[i]['title']
-        // document.querySelector(`p.${i}`).innerHTML += resultsList[i]['body']
-    }
-    document.body.style.display = 'block'
+        document.body.style.display = 'block'
+        document.querySelector('.homepage').style.display = 'none'
+}
 }
 
-
-function getOneResult(e) {
+async function getOneResult(e){
     e.preventDefault()
-    fetch(`http://localhost:3000/results/:index`)
-      .then(resp => resp.text())
-      .then(quote => document.getElementById('quote').textContent = quote)
+    let search = document.querySelector('#search-bar').value
+    console.log(search)
+    let res = await fetch(`http://localhost:3000/${search}`)
+    let resultsList = await res.json()
+    resultsList.sort(function(a, b) {
+        return b.rank - a.rank;
+    })
+    console.log(resultsList)
+    await window.location.replace(`${resultsList[0].url}`)
 }
+
+
+//     fetch(`http://localhost:3000/resultsList`)
+//       .then(resp => resp.text())
+//       .then(result => document.getElementById('results').textContent = result)
+//       .then(document.querySelector('.homepage').style.display = 'none')
+//       .then(document.body.style.display = 'block')
+//       .then(    
+//           for(let i =0; i<=resultsList.length -1; i++){
+//         let footer = document.createElement('footer')
+//         let h4 = document.createElement('h4')
+//         let p = document.createElement('p')
+//         footer.className=`${i}`
+//         h4.className=`${i}`
+//         p.className=`${i}`
+//         footer.textContent =resultsList[i]['url']
+//         h4.textContent =resultsList[i]['title']
+//         p.textContent =resultsList[i]['body']
+
+
+//         document.body.append(footer) 
+//         document.body.append(h4) 
+//         document.body.append(p))
+// }
+
+// function getResults(e) {
+//     e.preventDefault()
+//     document.querySelector('.homepage').style.display = 'none'
+//     for(let i =0; i<=resultsList.length -1; i++){
+//         let footer = document.createElement('footer')
+//         let h4 = document.createElement('h4')
+//         let p = document.createElement('p')
+//         footer.className=`${i}`
+//         h4.className=`${i}`
+//         p.className=`${i}`
+//         footer.textContent =resultsList[i]['url']
+//         h4.textContent =resultsList[i]['title']
+//         p.textContent =resultsList[i]['body']
+
+
+//         document.body.append(footer) 
+//         document.body.append(h4) 
+//         document.body.append(p)
+//     }
+//     document.body.style.display = 'block'
+
+
+
