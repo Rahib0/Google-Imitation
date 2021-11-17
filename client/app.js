@@ -20,16 +20,17 @@ async function getResults(e) {
     })
     console.log(resultsList)
     for(let i =0; i<=resultsList.length -1; i++){
-        let footer = document.createElement('footer')
+        let a = document.createElement('a')
         let h4 = document.createElement('h4')
         let p = document.createElement('p')
-        footer.className=`${i}`
+        a.className=`${i}`
         h4.className=`${i}`
         p.className=`${i}`
-        footer.textContent =resultsList[i]['url']
+        a.textContent =resultsList[i]['url']
+        a.setAttribute("href", `${resultsList[i]['url']}`)
         h4.textContent =resultsList[i]['title']
         p.textContent =resultsList[i]['body']
-        document.body.append(footer) 
+        document.body.append(a) 
         document.body.append(h4) 
         document.body.append(p)
         document.body.style.display = 'block'
@@ -49,51 +50,3 @@ async function getOneResult(e){
     console.log(resultsList)
     await window.location.replace(`${resultsList[0].url}`)
 }
-
-
-//     fetch(`http://localhost:3000/resultsList`)
-//       .then(resp => resp.text())
-//       .then(result => document.getElementById('results').textContent = result)
-//       .then(document.querySelector('.homepage').style.display = 'none')
-//       .then(document.body.style.display = 'block')
-//       .then(    
-//           for(let i =0; i<=resultsList.length -1; i++){
-//         let footer = document.createElement('footer')
-//         let h4 = document.createElement('h4')
-//         let p = document.createElement('p')
-//         footer.className=`${i}`
-//         h4.className=`${i}`
-//         p.className=`${i}`
-//         footer.textContent =resultsList[i]['url']
-//         h4.textContent =resultsList[i]['title']
-//         p.textContent =resultsList[i]['body']
-
-
-//         document.body.append(footer) 
-//         document.body.append(h4) 
-//         document.body.append(p))
-// }
-
-// function getResults(e) {
-//     e.preventDefault()
-//     document.querySelector('.homepage').style.display = 'none'
-//     for(let i =0; i<=resultsList.length -1; i++){
-//         let footer = document.createElement('footer')
-//         let h4 = document.createElement('h4')
-//         let p = document.createElement('p')
-//         footer.className=`${i}`
-//         h4.className=`${i}`
-//         p.className=`${i}`
-//         footer.textContent =resultsList[i]['url']
-//         h4.textContent =resultsList[i]['title']
-//         p.textContent =resultsList[i]['body']
-
-
-//         document.body.append(footer) 
-//         document.body.append(h4) 
-//         document.body.append(p)
-//     }
-//     document.body.style.display = 'block'
-
-
-
