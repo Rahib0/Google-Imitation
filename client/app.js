@@ -1,9 +1,5 @@
 const form = document.querySelector('form')
-let resultsList = [
-    { url: "https://www.youtube.com/", title: "Youtube", body: "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.", index: 0, rank: 0 },
-    { url: "https://twitter.com", title: "Twitter", body: "like and subscribe.", index: 1, rank: 2 },
-    { url: "https://en.wikipedia.org", title: "Wikipedia", body: "Let's get some learning going on", index: 3, rank: 2 }
-]
+
 
 
 form.addEventListener('submit', getResults)
@@ -12,13 +8,20 @@ document.querySelector('#lucky').addEventListener('click', getOneResult)
 async function getResults(e) {
     e.preventDefault()
     let search = document.querySelector('#search-bar').value
-    console.log(search)
     let res = await fetch(`http://localhost:3000/${search}`)
     let resultsList = await res.json()
+    console.log(resultsList)
+    if( resultsList.error){
+        document.body.style.display = 'block'
+        document.querySelector('.homepage').style.display = 'none'
+        let error = document.createElement('p')
+        error.textContent = resultsList.error;
+        document.body.append(error)
+        return 
+    }
     resultsList.sort(function(a, b) {
         return b.rank - a.rank;
     })
-    console.log(resultsList)
     for(let i =0; i<=resultsList.length -1; i++){
         let a = document.createElement('a')
         let h4 = document.createElement('h4')
